@@ -1,48 +1,30 @@
-var config = require("../config");
+var config = require("../paths");
 var gulp = require("gulp");
-var $ = require("gulp-load-plugins")(config.loadPluginsOptions);
+var gutil = require("gulp-util");
+var Karma = require("karma").Server;
+var path = require("path");
 
-var args = require("../args");
-
-gulp.task("test", ["compile:test"], (cb) => {
+gulp.task("test", (cb) => {
 	runTests(true, cb);
 });
 
-gulp.task("tdd", ["compile:test"], (cb) => {
+gulp.task("tdd", (cb) => {
 	runTests(false, cb);
 });
 
 function runTests(singleRun, cb) {
 
-	new $.karma.Server({
-		configFile: $.path.join(__dirname, `../../${config.test.karmaConfig}`),
+	new Karma({
+		configFile: path.join(__dirname, `../../${config.src.karmaConfig}`),
 		singleRun: singleRun,
 		autoWatch: !singleRun,
-		reporters: args.reporter,
-		browsers: args.browser
 	}, (code) => {
 		
 		// make sure failed karma tests cause gulp to exit non-zero
 		if (code === 1) {
-			$.util.log($.util.colors.red("------- Error: unit test failed -------"));
+			gutil.log(gutil.colors.red("------- Error: unit test failed -------"));
 			return process.exit(1);
 		}
 		cb();
 	}).start();
 }
-
-gulp.task("compile:test", () => {
-	var tsResult = gulp.src([config.src.tsd, config.test.setup, config.test.files])
-		.pipe($.plumber())
-	//.pipe(changed(config.test.output, { extension: ".js" }))
-		.pipe($.sourcemaps.init())
-		.pipe($.typescript(
-			$.typescript.createProject("tsconfig.json", {
-				typescript: require("typescript")
-			})
-		));
-
-	return tsResult.js
-			.pipe($.sourcemaps.write("."))
-			.pipe(gulp.dest(config.test.output));
-});

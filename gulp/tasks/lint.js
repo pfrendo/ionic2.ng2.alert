@@ -1,34 +1,16 @@
-var config = require("../config");
-var gulp = require("gulp");
-var $ = require("gulp-load-plugins")(config.loadPluginsOptions);
+const gulp = require("gulp");
+const tslint = require("gulp-tslint");
+const stylish = require("gulp-tslint-stylish");
 
-gulp.task("lint", (cb) => {
-	return $.runSequence(
-		["lint:ts", "lint:sass"],
-		cb);
-});
+const paths = require("../paths");
 
-gulp.task("lint:ts", () => {
-	return gulp.src([config.src.ts, `!${config.test.files}`])
-		.pipe($.tslint())
-		.pipe($.tslint.report($.tslintStylish, {
+gulp.task("lint", () => {
+	gulp.src(paths.src.ts)
+		.pipe(tslint())
+		.pipe(tslint.report(stylish, {
 			emitError: true,
 			sort: true,
-			bell: false
-		}));
-});
-
-gulp.task("lint:sass", (cb) => {
-	var processors = [
-		$.stylelint(),
-		$.postcssReporter({
-			clearMessages: true,
-			throwError: true
-		}),
-	];
-
-	return gulp.src(config.src.sass)
-		.pipe($.postcss(processors, {
-			syntax: $.postcssScss
+			bell: true,
+			fullPath: true
 		}));
 });

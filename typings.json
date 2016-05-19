@@ -1,0 +1,7 @@
+{
+  "name": "ionic2.ng2.alert",
+  "main": "dist/typings/index.d.ts",
+  "globalDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654"
+  }
+}

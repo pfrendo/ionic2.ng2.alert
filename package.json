@@ -1,7 +1,7 @@
 {
-  "name": "obg.ng.ui.skeleton",
+  "name": "ionic2.ng2.alert",
   "version": "0.0.0",
-  "description": "OBG Global UI Skeleton",
+  "description": "Ionic2 Alert Component",
   "main": "dist/amd/index.js",
   "directories": {
     "doc": "doc",
@@ -23,8 +23,28 @@
   ],
   "author": "One Betsson Group Frontend",
   "license": "MIT",
+  "dependencies": {
+    "@angular/common": "2.0.0-rc.1",
+    "@angular/compiler": "2.0.0-rc.1",
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
+    "@angular/platform-browser": "2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
+    "@angular/platform-server": "2.0.0-rc.1",
+    "es6-shim": "^0.35.0",
+    "gulp-git": "^1.7.1",
+    "ionic-angular": "^2.0.0-beta.6",
+    "ionic-native": "^1.1.0",
+    "ionicons": "3.0.0",
+    "reflect-metadata": "^0.1.3",
+    "rxjs": "5.0.0-beta.6",
+    "ssv-core": "^0.6.4",
+    "ssv-ng2-core": "0.0.1-rc.1",
+    "systemjs": "0.19.27",
+    "zone.js": "^0.6.12"
+  },
   "devDependencies": {
-    "conventional-changelog": "^1.1.0",
+    "gulp-conventional-changelog": "^1.1.0",
     "del": "^2.2.0",
     "dts-generator": "^1.7.0",
     "es6-module-loader": "^0.17.11",
@@ -65,5 +85,6 @@
     "tslint": "3.10.1",
     "typescript": "^1.8.10",
     "yargs": "^4.6.0"
-  }
+  },
+  "typings": "dist/typings/index.d.ts"
 }

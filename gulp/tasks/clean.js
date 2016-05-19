@@ -1,17 +1,14 @@
-var config = require("../config");
-var gulp = require("gulp");
-var $ = require("gulp-load-plugins")(config.loadPluginsOptions);
+const gulp = require("gulp");
+const del = require("del");
 
-gulp.task("clean", (cb) => {
-	return $.runSequence(
-		["clean:dist", "clean:artifact"],
-		cb);
+const paths = require("../paths");
+
+gulp.task("clean", ["clean:artifact", "clean:dist"]);
+
+gulp.task("clean:artifact", () => {
+	return del(paths.output.artifact);
 });
 
 gulp.task("clean:dist", () => {
-	return $.del(config.output.root)
-});
-
-gulp.task("clean:artifact", () => {
-	return $.del(config.artifact.root)
+	return del(paths.output.dist);
 });

@@ -1,13 +1,14 @@
 {
 	"compilerOptions": {
-		"target": "es5",
 		"module": "amd",
+		"target": "es5",
+		"moduleResolution": "node",
 		"emitDecoratorMetadata": true,
 		"experimentalDecorators": true,
+		"declaration": true,
 		"noImplicitReturns": true,
 		"noImplicitAny": false,
-		"noFallthroughCasesInSwitch": true,
-		"noEmitOnError": true
+		"noFallthroughCasesInSwitch": true
 	},
 	"exclude": [
 		"node_modules",
